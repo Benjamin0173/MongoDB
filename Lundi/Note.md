@@ -236,8 +236,10 @@ db.maCollection.find().limit(12).pretty()
 On retrouve d'autre operateur tels que :
 - $ne : different de
 - $gt : superieur a , $gte : superieur ou egal
-- $let : ... , $lte : ...
+- $lt : ... , $lte : ...
 - $in et $nin : absence ou précence
+- $divide : diviser
+- 
 on peut combiner ces operateurs pour effectuer des recherches sur des intervalles : 
 ```javascript
 db.maCollection.find({"age" : { $lt: 50, $gt: 20}})
