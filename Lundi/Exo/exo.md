@@ -65,7 +65,7 @@ db.salles.insertMany([
    } 
 ]) 
 ```
-
+-----
 ##### Exercice 1
 
 Affichez l’identifiant et le nom des salles qui sont des SMAC.
@@ -129,11 +129,20 @@ Affichez le nom des salles dont au moins un des avis comporte une date postérie
 
 Affichez le nom ainsi que la capacité des salles dont le produit de la valeur de l’identifiant par 100 est strictement supérieur à la capacité.
 
+```javascript
+db.salles.find({$epx : {$gt: [ {$multiply : ["$_id",100]}, "$capacite"]}}, "_id":0,"nom":1,"capacite":1)
+```
+
+
 ##### Exercice 12
 
 Affichez le nom des salles de type SMAC programmant plus de deux styles de musiques différents en utilisant l’opérateur $where qui permet de faire usage de JavaScript.
 
 bug avec $where
+
+```javascript
+db.salles.find({ $where: function() { return this.type === "SMAC" && this.styles.length > 2; } }, {nom: 1, _id: 0})
+```
 
 ##### Exercice 13
 
@@ -178,31 +187,67 @@ Ajoutez un tableau composé des styles «techno» et « reggae » à la salle do
 ##### Exercice 18
 
 Pour les salles dont le nom commence par la lettre P (majuscule ou minuscule), augmentez la capacité de 150 places et rajoutez un champ de type tableau nommé contact dans lequel se trouvera un document comportant un champ nommé telephone dont la valeur sera « 04 11 94 00 10 ».
+![[Pasted image 20230131091505.png]]
+
+
+
+
 
 ##### Exercice 19
 
 Pour les salles dont le nom commence par une voyelle (peu importe la casse, là aussi), rajoutez dans le tableau avis un document composé du champ date valant la date courante et du champ note valant 10 (double ou entier). L’expression régulière pour chercher une chaîne de caractères débutant par une voyelle suivie de n’importe quoi d’autre est [^aeiou]+$.
 
+![[Pasted image 20230131100005.png]]
+![[Pasted image 20230131100031.png]]
+![[Pasted image 20230131100100.png]]
+
+
+
 ##### Exercice 20
 
 En mode upsert, vous mettrez à jour tous les documents dont le nom commence par un z ou un Z en leur affectant comme nom « Pub Z », comme valeur du champ capacite 50 personnes (type entier et non décimal) et en positionnant le champ booléen smac à la valeur « false ».
+
+aucun document a un Nom commencant pas un Z ou z
+![[Pasted image 20230131095636.png]]
+
+![[Pasted image 20230131095545.png]]
+
+mais il a été crée avec la commande
 
 ##### Exercice 21
 
 Affichez le décompte des documents pour lesquels le champ _id est de type « objectId ».
 
+![[Pasted image 20230131092052.png]]
+Il sont tous des en int32
+![[Pasted image 20230131092210.png]]
+
+
 ##### Exercice 22
 
 Pour les documents dont le champ _id n’est pas de type « objectId », affichez le nom de la salle ayant la plus grande capacité. Pour y parvenir, vous effectuerez un tri dans l’ordre qui convient tout en limitant le nombre de documents affichés pour ne retourner que celui qui comporte la capacité maximale.
+
+![[Pasted image 20230131094727.png]]
+
 
 ##### Exercice 23
 
 Remplacez, sur la base de la valeur de son champ _id, le document créé à l’exercice 20 par un document contenant seulement le nom préexistant et la capacité, que vous monterez à 60 personnes.
 
+![[Pasted image 20230131095545.png]]
+![[Pasted image 20230131102742.png]]
+![[Pasted image 20230131102758.png]]
+
 ##### Exercice 24
 
 Effectuez la suppression d’un seul document avec les critères suivants : le champ _id est de type « objectId » et la capacité de la salle est inférieure ou égale à 60 personnes.
 
+![[Pasted image 20230131094304.png]]
+
+
 ##### Exercice 25
 
 À l’aide de la méthode permettant de trouver un seul document et de le mettre à jour en même temps, réduisez de 15 personnes la capacité de la salle située à Nîmes.
+
+![[Pasted image 20230131093206.png]]
+
