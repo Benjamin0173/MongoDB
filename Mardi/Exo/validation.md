@@ -7,6 +7,8 @@ capacite sera obligatoire et devra être de type entier (int).
 
 Dans le champ adresse, les champs codePostal et ville, tous deux de type chaîne de caractères, seront obligatoires.
 
+![[Pasted image 20230131151703.png]]
+
 Que constatez-vous lors de la tentative d’insertion suivante, et quelle en est la cause ?
 
 ```
@@ -14,10 +16,13 @@ db.salles.insertOne(
 {"nom": "Super salle", "capacite": 1500, "adresse": {"ville": "Musiqueville"}} 
 ) 
 ```
+![[Pasted image 20230131151820.png]]
+
+
 
 Que proposez-vous pour régulariser la situation ?
 
-
+![[Pasted image 20230131151703.png]]
 
 Exercice 2
 
@@ -40,5 +45,6 @@ Le champ smac doit être présent OU les styles musicaux doivent figurer parmi l
 
 Que se passe-t-il lorsque nous exécutons la mise à jour suivante ?
 
-
-db.salles.update({"_id": 3}, {$set: {"verifie": false}}) 
+```
+db.salles.update({"_id": 3}, {$set: {"verifie": false}})
+```

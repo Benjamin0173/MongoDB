@@ -86,7 +86,7 @@ Les propriété d'un Object JSON sont représentees pas des paires cle/valeur :
 //Erreur prenom -> Nom et inversement
 
 {"nom" :"Nicolas", 
- "prenom": "PEYACHON"
+ "prenom": "PEYACHON",
  "parent": [
 	 {"nom" :"Nicolas", "prenom": "PEYACHON"},
 	 {"nom" :"Nicolas", "prenom": "PEYACHON"},	 

@@ -61,3 +61,144 @@ db.hobbies.updateOne({"_id": 2}, {$push : {"passions": {$each : ["Minecraft", "R
 //Evite les doublons
 db.hobbies.updateOne({"_id": 2}, {$addToSet : {"passions": {$each : ["Minecraft", "Rise of Kingdom"]}})
 ```
+
+---
+# les requetes geospatiales
+
+```javascript
+{type : <type dobject GEOJson>, coordinates : <coordonnees>} 
+```
+
+le type Point
+
+```javascript
+{type : "Point",
+	"coodinates" : [13.0, 1.0]
+} 
+```
+
+le type multiPoint
+
+```javascript
+{type : "Point",
+	"coodinates" : [13.0, 1.0], [13.0,3.0]
+} 
+```
+
+le type LineString
+
+```javascript
+{type : "LineString",
+	"coodinates" : [13.0, 1.0], [13.0,3.0]
+} 
+```
+
+le type Polygone
+
+```javascript
+{type : "Polygon",
+	"coodinates" : [
+		[
+			[13.0, 1.0], [13.0,3.0]
+		], 
+		[
+			[13.0, 1.0], [13.0,3.0]
+		]
+	]
+} 
+```
+
+
+
+---
+
+db.avignon.createIndex({"localisation" : "2dsphere"})
+
+db.avignon2d.createIndex({"localisation" : "2d"})
+
+l'operateur $nearSphere:
+
+```javascript
+{
+$nearSphere: {
+	$geometry: {
+		type: "Point",
+		"coodinates" : [<longitute>], [<latitude>]
+		
+		}
+	}
+	$minDistance: <distance en metre>
+	$maxDistance: <distance en metre>
+}
+
+```
+
+
+```javascript
+var opera= {type: "Point", coordinates: [43.949749,4.805325]}
+```
+
+Effectuer une requete sur la collection avignon
+
+```javascript
+db.avignon.find(
+	{
+		$localisation: {
+			$nearSphere: {
+				$geometry: {opera}
+			}
+		}
+	},{ "_id": 0, "nom" : 1}
+).explain()
+```
+
+Cet operateur n'effectue aucun tri et ne necessite 
+
+
+```javascript
+{
+	<champ des documents contenant les coordonnees> : {
+		$geoWithin: {
+			<operateur de forme>: <coordonnees>
+		}
+	}
+}
+```
+
+Création d'un polygone pour notre exemple : 
+
+```javascript
+var polygone = [
+	[43.9548, 4.80143],
+	[43.95475, 4.80779],
+	[43.95045, 4.81097],
+	[43.9548, 4.80449],
+]
+
+```
+
+la requete suivante utilise le polygone:
+
+```javascript
+db.avignon2d.find({
+	"localisation": {
+		$geoWithin: {
+			$polygon: polygon
+		}
+	}
+},
+{"_id":0, "nom":-1} 
+)
+
+```
+
+Signature pour le cas d'utilisation d'objects GeoJSON:
+```javascript
+{
+	<champ des documents contenant les coordonnees> : {
+		$geoWithin: {
+			<operateur de forme>: <coordonnees>
+		}
+	}
+}
+```
