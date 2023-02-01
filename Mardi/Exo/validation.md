@@ -28,6 +28,9 @@ Exercice 2
 
 Rajoutez à vos critères de validation existants un critère supplémentaire : le champ _id devra dorénavant être de type entier (int) ou ObjectId.
 
+![[Pasted image 20230201102619.png]]
+
+
 Que se passe-t-il si vous tentez de mettre à jour l’ensemble des documents existants dans la collection à l’aide de la requête suivante :
 
 ```
