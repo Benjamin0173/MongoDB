@@ -111,3 +111,4 @@ db.weather_advanced.aggregate([
 ![[Pasted image 20230202113453.png]]
 
 
+![[Pasted image 20230202115320.png]]
