@@ -44,8 +44,8 @@ db.weather_advanced.find({
         { "T (degC)": { $gt: 25 } },
         ({
            "Date Time": { 
-           $gte: new Date("YYYY-07-01T00:00:00.000Z"),
-            $lt: new Date("YYYY-08-31T23:59:59.999Z") 
+           $gte: new Date("2004-06-01T00:00:00.000Z"),
+            $lt: new Date("2004-09-31T23:59:59.999Z") 
             }
         })
     ]
@@ -106,3 +106,9 @@ db.weather_advanced.aggregate([
 #### Export de la base de données:
 ##### a. Exportez les résultats des requêtes dans un fichier CSV pour un usage ultérieur. Utilisez la commande mongoexport pour exporter des données de MongoDB.
 
+![[Pasted image 20230202113352.png]]
+![[Pasted image 20230202113406.png]]
+![[Pasted image 20230202113453.png]]
+
+
+![[Pasted image 20230202115320.png]]
