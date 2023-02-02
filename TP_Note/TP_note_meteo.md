@@ -26,9 +26,17 @@ https://www.kaggle.com/datasets/mnassrib/jena-weather-dataset
 #### Indexation avec MongoDB:
 ##### a. Créez un index sur le champ de la date pour améliorer les performances de la recherche. Utilisez la méthode createIndex ().
 
+```JSON
+db.Weather.createIndex({"Date Time" : 1})
+```
+
 ![[Pasted image 20230201133520.png]]
 
 ##### b. Vérifiez que l'index a été créé en utilisant la méthode listIndexes ().
+
+```JSON
+db.Weather.getIndexes
+```
 
 ![[Pasted image 20230201133539.png]]
 
