@@ -11,10 +11,10 @@ Dans le champ adresse, les champs codePostal et ville, tous deux de type chaîne
 
 Que constatez-vous lors de la tentative d’insertion suivante, et quelle en est la cause ?
 
-```
+```JSON
 db.salles.insertOne( 
-{"nom": "Super salle", "capacite": 1500, "adresse": {"ville": "Musiqueville"}} 
-) 
+{"nom": "Super salle", "capacite": 1500, "adresse": {"ville": "Musiqueville"}
+}) 
 ```
 ![[Pasted image 20230131151820.png]]
 
